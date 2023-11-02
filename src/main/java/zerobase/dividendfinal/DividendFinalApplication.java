@@ -8,6 +8,7 @@ public class DividendFinalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DividendFinalApplication.class, args);
-    }
 
+
+    }
 }
