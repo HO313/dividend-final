@@ -24,9 +24,11 @@ import zerobase.dividendfinal.persist.entity.CompanyEntity;
 public class CompanyController {
 
     private final CompanyService companyService;
-    @GetMapping("/autocomplet")
+    @GetMapping("/autocomplete")
     public ResponseEntity<?> autocomplete(@RequestParam String keyword){
-        return null;
+        var result = this.companyService.getCompanyNamesByKeyword(keyword);
+
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping
@@ -44,7 +46,7 @@ public class CompanyController {
         }
 
         Company company = this.companyService.save(ticker);
-
+        this.companyService.addAutoCompleteKeyword(company.getName());
         return ResponseEntity.ok(company);
     }
 
