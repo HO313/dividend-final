@@ -65,11 +65,11 @@ public class CompanyService {
     }
 
     public List<String> getCompanyNamesByKeyword(String keyword) {
-        Pageable limit = PageRequest.of(0,10);
+        Pageable limit = PageRequest.of(0, 10);
         Page<CompanyEntity> companyEntities = this.companyRepository.findByNameStartingWithIgnoreCase(keyword, limit);
         return companyEntities.stream()
-                              .map(e -> e.getName())
-                              .collect(Collectors.toList());
+                .map(e -> e.getName())
+                .collect(Collectors.toList());
     }
 
     public void addAutoCompleteKeyword(String keyword) {
@@ -86,5 +86,16 @@ public class CompanyService {
 
     public void deleteAutocompleteKeyword(String keyword) {
         this.trie.remove(keyword);
+    }
+
+    public String deleteCompany(String ticker) {
+        var company = this.companyRepository.findByTicker(ticker)
+                                            .orElseThrow(() -> new RuntimeException("존재하지 않는 회사입니다."));
+
+        this.dividendRepository.deleteAllByCompanyId(company.getId());
+        this.companyRepository.delete(company);
+
+        this.deleteAutocompleteKeyword(company.getName());
+        return company.getName();
     }
 }
