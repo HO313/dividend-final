@@ -30,6 +30,7 @@ public class TokenProvider {
 
     /**
      * 토큰 생성(발금)
+     *
      * @param username
      * @param roles
      * @return
@@ -49,10 +50,11 @@ public class TokenProvider {
                 .compact();
     }
 
-    public Authentication getAuthentication(String jwt){
+    public Authentication getAuthentication(String jwt) {
         UserDetails userDetails = this.memberService.loadUserByUsername(this.getUsername(jwt));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
+
     public String getUsername(String token) {
         return this.parseClaims(token).getSubject();
     }

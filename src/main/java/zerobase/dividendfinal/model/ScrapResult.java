@@ -13,7 +13,7 @@ public class ScrapResult {
 
     private List<Dividend> dividends;
 
-    public ScrapResult(){
+    public ScrapResult() {
         this.dividends = new ArrayList<>();
     }
 }

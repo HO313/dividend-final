@@ -22,14 +22,14 @@ public class AuthController {
     private final TokenProvider tokenProvider;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody Auth.SignUp request){
+    public ResponseEntity<?> signup(@RequestBody Auth.SignUp request) {
         // 회원가입을 위한 API
         var result = this.memberService.register(request);
         return ResponseEntity.ok(result);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> signin(@RequestBody Auth.SignIn request){
+    public ResponseEntity<?> signin(@RequestBody Auth.SignIn request) {
         // 로그인용 API
         var member = this.memberService.authenticate(request);
         var token = this.tokenProvider.generateToken(member.getUsername(), member.getRoles());

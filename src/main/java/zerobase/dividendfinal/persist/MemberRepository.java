@@ -9,5 +9,6 @@ import zerobase.dividendfinal.persist.entity.MemberEntity;
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
     Optional<MemberEntity> findByUsername(String username);
+
     boolean existsByUsername(String username);
 }

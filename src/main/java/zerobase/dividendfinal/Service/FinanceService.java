@@ -47,7 +47,6 @@ public class FinanceService {
                 .map(e -> new Dividend(e.getDate(), e.getDividend()))
                 .collect(Collectors.toList());
 
-
         return new ScrapResult(new Company(company.getTicker(), company.getName()),
                 dividends);
     }

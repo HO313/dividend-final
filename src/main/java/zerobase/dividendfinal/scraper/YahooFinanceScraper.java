@@ -16,7 +16,7 @@ import zerobase.dividendfinal.model.ScrapResult;
 import zerobase.dividendfinal.model.constants.Month;
 
 @Component
-public class YahooFinanceScraper implements Scraper{
+public class YahooFinanceScraper implements Scraper {
 
     private static final String STATISTICS_URL = "https://finance.yahoo.com/quote/%s/history?period1=%d&period2=%d&interval=1mo";
     private static final String SUMMARY_URL = "https://finance.yahoo.com/quote/%s?p=%s";

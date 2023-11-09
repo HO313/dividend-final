@@ -43,7 +43,7 @@ public class MemberService implements UserDetailsService {
 
         var user = this.memberRepository.findByUsername(member.getUsername())
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 ID 입니다."));
-        if (this.passwordEncoder.matches(member.getPassword(), user.getPassword())){
+        if (this.passwordEncoder.matches(member.getPassword(), user.getPassword())) {
             throw new RuntimeException("비밀번호가 일치하지 않습니다.");
         }
         return user;
